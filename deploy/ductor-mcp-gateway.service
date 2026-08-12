@@ -1,0 +1,32 @@
+[Unit]
+Description=Ductor MCP Gateway sidecar
+After=network.target ductor.service
+Wants=ductor.service
+
+[Service]
+Type=simple
+User=ductor-mcp
+Group=ductor-mcp
+WorkingDirectory=/opt/ductor-mcp-gateway
+Environment=DUCTOR_MCP_GATEWAY_CONFIG=/etc/ductor-mcp-gateway/config.toml
+EnvironmentFile=-/etc/ductor-mcp-gateway/environment
+ExecStart=/opt/ductor-mcp-gateway/.venv/bin/ductor-mcp-gateway serve
+Restart=on-failure
+RestartSec=5s
+TimeoutStopSec=30s
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictNamespaces=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target
