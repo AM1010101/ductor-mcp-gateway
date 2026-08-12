@@ -60,6 +60,13 @@ tool output non-sensitive.
 
 ## Install
 
+For the shortest path from an existing Ductor installation to a public,
+authenticated endpoint, follow the **[Cloudflare quick start](docs/cloudflare-quickstart.md)**.
+It includes the service installation, token placement, Tunnel and Access setup,
+MCP client headers, verification, and troubleshooting.
+
+For local development only:
+
 ```console
 python3 -m venv .venv
 .venv/bin/pip install -e '.[dev]'
@@ -121,8 +128,10 @@ available through the unit's mode-`0600` `EnvironmentFile` or `ductor.token_file
 Then install the unit. It intentionally does not share or modify Ductor's
 installed service.
 
-For public hostname deployment without opening a listener, see
-[`docs/cloudflare.md`](docs/cloudflare.md). Protect the entire hostname in
+For public hostname deployment without opening a listener, start with the
+[Cloudflare quick start](docs/cloudflare-quickstart.md). The
+[Cloudflare deployment reference](docs/cloudflare.md) covers locally managed
+tunnels and additional operational detail. Protect the entire hostname in
 Cloudflare Access so `/health` cannot become a bypass.
 
 ## Compatibility
